@@ -6,6 +6,8 @@ const app = express();
 const PORT = 3000;
 
 const notesFile = path.join(__dirname, 'notes.json');
+// After express import
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware to parse JSON body
 app.use(express.json());
