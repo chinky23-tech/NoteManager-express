@@ -19,11 +19,22 @@ function displayNotes(notes) {
     const div = document.createElement('div');
     div.classList.add('note');
     div.innerHTML = `
-      <h3>${note.title}</h3>
-      <p>${note.content}</p>
+     <input type = "text" class = "edit-title" value ="${note.title}" disabled/>
+     <textarea class = "edit-content" disabled>${note.content}</textarea>
+      <div class = "btn-group">
+      <button class="enableEdit">Edit</button>
+      <button class="saveEdit">Save</button>
       <button class="deleteNote">Delete</button>
+      </div>
     `;
-
+     const editBtn = div.querySelector('.enableEdit');
+     editBtn.addEventListener('click' , async () => {
+        await editNoteById(note.id);
+     });
+     const saveBtn = div.querySelector('.saveEdit');
+     saveBtn.addEventListener('click' , async () => {
+      await saveNoteById(note.id);
+     });
     const deleteBtn = div.querySelector('.deleteNote');
     deleteBtn.addEventListener('click', async () => {
       await deleteNoteById(note.id);
