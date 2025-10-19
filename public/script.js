@@ -43,6 +43,24 @@ function displayNotes(notes) {
     notesList.appendChild(div);
   });
 }
+//edit note title by ID
+async function editTitleById(id){
+  try{
+    await fectch(`/notes/${id}`, {method: `EDIT`});
+    fetchNotes(); //refresh list after edit
+  }catch(err){
+    console.error('Error editing note:', err);
+  }
+}
+// edit note content by id
+async function editContentById(id){
+  try{
+    await fetch(`/notes/${id}`,{method : 'EDIT'});
+    fetchNotes(); //refresh list adter editing
+  }catch(err){
+    console.error('Error editing note:', err);
+  }
+}
 
 // Delete note by ID
 async function deleteNoteById(id) {
@@ -53,7 +71,16 @@ async function deleteNoteById(id) {
     console.error('Error deleting note:', err);
   }
 }
-
+// save note by ID
+async function saveNoteById(id) {
+  try{
+    await fetch(`/notes/${id}` , {method: 'SAVE'});
+    fetchNotes(); // refresh list after saving
+  }catch(err){
+    console.error('Error saving note:' , err);
+  }
+  
+}
 // Add new note
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
