@@ -22,46 +22,49 @@ function displayNotes(notes) {
      <input type = "text" class = "edit-title" value ="${note.title}" disabled/>
      <textarea class = "edit-content" disabled>${note.content}</textarea>
       <div class = "btn-group">
-      <button class="enableEdit">Edit</button>
-      <button class="saveEdit">Save</button>
-      <button class="deleteNote">Delete</button>
+      <button class="editBtn">Edit</button>
+      <button class="saveBtn">Save</button>
+      <button class="deleteBtn">Delete</button>
       </div>
     `;
-     const editBtn = div.querySelector('.enableEdit');
-     editBtn.addEventListener('click' , async () => {
-        await editNoteById(note.id);
-     });
-     const saveBtn = div.querySelector('.saveEdit');
-     saveBtn.addEventListener('click' , async () => {
-      await saveNoteById(note.id);
-     });
-    const deleteBtn = div.querySelector('.deleteNote');
-    deleteBtn.addEventListener('click', async () => {
-      await deleteNoteById(note.id);
-    });
 
-    notesList.appendChild(div);
+const titleInput = div.querySelector('.edit-title');
+const contentInput = div.querySelector('.edit-content');
+const editBtn = div.querySelector('.editBtn');
+const saveBtn = div.querySelector('.saveBtn');
+const deleteBtn = div.querySelector('.deleteBtn');
+//enable editing
+
+editBtn.addEventListener('click', () => {
+titleInput.disabled = false;
+contentInput.disabled = false;
+editBtn.style.display = 'none';
+saveBtn.style.display = 'inline-block';
+});
+
+// save updated note
+saveBtn.addEventListener('click' , async () => {
+const updatedTitle = titleInput.value.trim();
+const updatedContent = titleInput.value.trim();
+
+if(!updatedTitle || !updatedContent) return alert('Both fields are required');
+try{
+  await fetch(`/notes/${note.id}`,{
+  
+    method : 'PUT',
+    headers : {'Content-Type': 'application/json'},
+    body: JSON.stringify({title: updatedTitle, content: updatedContent})
   });
-}
-//edit note title by ID
-async function editTitleById(id){
-  try{
-    await fectch(`/notes/${id}`, {method: `EDIT`});
-    fetchNotes(); //refresh list after edit
-  }catch(err){
-    console.error('Error editing note:', err);
-  }
-}
-// edit note content by id
-async function editContentById(id){
-  try{
-    await fetch(`/notes/${id}`,{method : 'EDIT'});
-    fetchNotes(); //refresh list adter editing
-  }catch(err){
-    console.error('Error editing note:', err);
-  }
+  fetchNotes();
+}catch(err){
+  console.error('Error updating note:', err);
 }
 
+
+});
+ }
+)}
+   
 // Delete note by ID
 async function deleteNoteById(id) {
   try {
@@ -71,16 +74,7 @@ async function deleteNoteById(id) {
     console.error('Error deleting note:', err);
   }
 }
-// save note by ID
-async function saveNoteById(id) {
-  try{
-    await fetch(`/notes/${id}` , {method: 'SAVE'});
-    fetchNotes(); // refresh list after saving
-  }catch(err){
-    console.error('Error saving note:' , err);
-  }
-  
-}
+
 // Add new note
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
