@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note Manager</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Note Manager</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Note Manager</h1>
-        <form id="noteForm">
-            <input type="text" id="title" placeholder="Note Title" required/>
-            <textarea id="content" placeholder="Write Your Note.." required>
-            
-            </textarea>
-            <button type="submit">Add Note</button>
-        </form>
-        <h2>All Notes</h2>
-        <div id="notesList">
+  <h1>📝 Note Manager</h1>
 
-        </div>
-    </div>
-    <script src="script.js"></script>
+  <form id="noteForm">
+    <input type="text" id="title" placeholder="Note title" required>
+    <textarea id="content" placeholder="Note content" required></textarea>
+    <button type="submit">Add Note</button>
+  </form>
+
+  <h2>Your Notes</h2>
+  <div id="notesList"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
