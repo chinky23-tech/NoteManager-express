@@ -22,9 +22,13 @@
         <h1>Note Manager</h1>
         <button id="themeToggle">Dark Mode</button>
       </div>
-      <input type="text" id="title" placeholder="note title" required/>
+ <input type="text" id="searchInput" placeholder="🔍 Search notes by title..." />
+
+    <form id="noteForm">
+      <input type="text" id="title" placeholder="Note Title" required />
       <textarea id="content" placeholder="Write your note..." required></textarea>
       <button type="submit">Add Note</button>
+    </form>
     </div>
   <script src="script.js"></script>
 </body>
