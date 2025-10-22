@@ -7,29 +7,26 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>📝 Note Manager</h1>
+  <div class="container">
+    <div class="top-bar">
+      <h1>📝 Note Manager</h1>
+      <button id="themeToggle">🌙 Dark Mode</button>
+    </div>
 
-  <form id="noteForm">
-    <input type="text" id="title" placeholder="Note title" required>
-    <textarea id="content" placeholder="Note content" required></textarea>
-    <button type="submit">Add Note</button>
-  </form>
-
-  <h2>Your Notes</h2>
-  <div id="notesList"></div>
-    <div class="container">
-      <div class="top-bar">
-        <h1>Note Manager</h1>
-        <button id="themeToggle">Dark Mode</button>
-      </div>
- <input type="text" id="searchInput" placeholder="🔍 Search notes by title..." />
+    <input type="text" id="searchInput" placeholder="🔍 Search notes by title..." />
 
     <form id="noteForm">
       <input type="text" id="title" placeholder="Note Title" required />
       <textarea id="content" placeholder="Write your note..." required></textarea>
       <button type="submit">Add Note</button>
     </form>
-    </div>
-  <script src="script.js"></script>
+
+    <h2>All Notes</h2>
+    <div id="notesList"></div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast"></div>
+
+  <script src="scrpt.js"></script>
 </body>
-</html>
